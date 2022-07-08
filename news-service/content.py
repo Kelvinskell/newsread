@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/news")
-def home_page():
+def news_page():
     return render_template('news.html')
 
 @app.route("/")
