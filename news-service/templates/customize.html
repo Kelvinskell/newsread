@@ -1,5 +1,10 @@
-<!doctype html>
-<html>
+{% extends 'base.html' %}
+
+{% block title %}
+NewsRead - Breaking News
+{% endblock %}
+
+{% block content %}
 <table>
        <table class="table table-hover table-dark">
         <thead>
@@ -11,10 +16,10 @@
         </thead>
         <tbody>
 		<tr>
-			<td>Value For Category <button class="btn btn-outline btn-success">Select/Unselect</button></td>
-			<td>Value For Country <button class="btn btn-outline btn-success">Select/Unselect</button></td>
-			<td>Value For Language <button class="btn btn-outline btn-success">Select/Unselect</button></td>
+			<td>Value For Category <button class="btn btn-outline btn-success">Select</button></td>
+			<td>Value For Country <button class="btn btn-outline btn-success">Select</button></td>
+			<td>Value For Language <button class="btn btn-outline btn-success">Select</button></td>
 		</tr>
         </tbody>
   </table>
-</html>
+{% endblock %}
