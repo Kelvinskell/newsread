@@ -12,4 +12,22 @@ def news_page():
 @app.route("/")
 @app.route("/customize")
 def customization_page():
-    return render_template('customize.html')
+    countries = ['Australia', 'Canada', 'China', 'France', 'Germany', 'India', 'Italy', 'Nigeria', 'Poland', 'Singapore', 'United States', 'United Kingdom']
+    languages = ['Chinese', 'Dutch', 'English', 'French', 'German', 'Hebrew', 'Italian', 'Norweighian', 'Portuguese', 'Russian', 'Spanish', 'Swedish']
+    categories = ['General', 'Business', 'Celebrity gossip', 'Entertainment', 'Finance', 'Health', 'IT', 'Medicine & Pharmacy', 'Technology', 'Science', 'Sports', 'World']
+    items = [
+            {'country': countries[0], 'language': languages[0], 'category': categories[0]},
+            {'country': countries[1], 'language': languages[1], 'category': categories[1]},
+            {'country': countries[2], 'language': languages[2], 'category': categories[2]},
+            {'country': countries[3], 'language': languages[3], 'category': categories[3]},
+            {'country': countries[4], 'language': languages[4], 'category': categories[4]},
+            {'country': countries[5], 'language': languages[5], 'category': categories[5]},
+            {'country': countries[6], 'language': languages[6], 'category': categories[6]},
+            {'country': countries[7], 'language': languages[7], 'category': categories[7]},
+            {'country': countries[8], 'language': languages[8], 'category': categories[8]},
+            {'country': countries[9], 'language': languages[9], 'category': categories[9]},
+            {'country': countries[10], 'language': languages[10], 'category': categories[10]},
+            {'country': countries[11], 'language': languages[11], 'category': categories[11]},
+            ]
+
+    return render_template('customize.html', items=items)
