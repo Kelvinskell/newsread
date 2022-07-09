@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask_mysqldb import MySQL
 from application import database
+database.create_database()
+database.create_table()
 
 app = Flask(__name__)
 
