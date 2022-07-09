@@ -1,4 +1,3 @@
-# Connect to Database
 from mysql.connector import connect, Error
 
 # DEFINE SQL QUERIES
@@ -18,6 +17,7 @@ email_address VARCHAR(35) UNIQUE NOT NULL
 
 
 def create_database():
+    # Connect to Database
     with connect(
             host=HOST,
             user=USER,
