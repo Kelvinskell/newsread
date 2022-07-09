@@ -1,8 +1,5 @@
-from flask import Flask
+from application import app
 from flask import render_template
-
-app = Flask(__name__)
-
 
 @app.route("/")
 @app.route("/news")
@@ -12,9 +9,10 @@ def news_page():
 @app.route("/")
 @app.route("/customize")
 def customization_page():
+    # Parameters to be accepted from user and fed to the API
     countries = ['Australia', 'Canada', 'China', 'France', 'Germany', 'India', 'Italy', 'Nigeria', 'Poland', 'Singapore', 'United States', 'United Kingdom']
     languages = ['Chinese', 'Dutch', 'English', 'French', 'German', 'Hebrew', 'Italian', 'Norweighian', 'Portuguese', 'Russian', 'Spanish', 'Swedish']
-    categories = ['General', 'Business', 'Celebrity gossip', 'Entertainment', 'Finance', 'Health', 'IT', 'Medicine & Pharmacy', 'Technology', 'Science', 'Sports', 'World']
+    categories = ['General', 'Business', 'Celebrity Gossip', 'Entertainment', 'Finance', 'Health', 'IT', 'Medicine & Pharmacy', 'Politics', 'Technology', 'Science', 'Sports']
     items = [
             {'country': countries[0], 'language': languages[0], 'category': categories[0]},
             {'country': countries[1], 'language': languages[1], 'category': categories[1]},
