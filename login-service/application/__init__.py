@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template
 from flask_mysqldb import MySQL
-from flask_login import LoginManager
 from application import database
 database.create_database()
 database.create_table()
@@ -12,7 +11,6 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_DB'] = 'newsread'
 mysql = MySQL(app)
-login_manager = LoginManager(app)
 
 from application import routes
 
