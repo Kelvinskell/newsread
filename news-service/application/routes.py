@@ -4,7 +4,7 @@ from flask import render_template
 @app.route("/")
 @app.route("/news")
 def news_page():
-    return render_template('news.html')
+    return render_template('news_page.html')
 
 @app.route("/")
 @app.route("/customize")
@@ -28,4 +28,4 @@ def customization_page():
             {'country': countries[11], 'language': languages[11], 'category': categories[11]},
             ]
 
-    return render_template('customize.html', items=items)
+    return render_template('customize_page.html', items=items)
