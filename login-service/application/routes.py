@@ -13,7 +13,6 @@ VALUES (%s, %s, SHA1(%s))
 """
 
 
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     form = RegisterForm()
@@ -48,3 +47,8 @@ def register_page():
         cursor.close()
         return '<h1>You have successfully registered</h1>'
     return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    return render_template('login.html')
+
