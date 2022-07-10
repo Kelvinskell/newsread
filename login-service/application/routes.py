@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash
 from application import mysql
 import MySQLdb
 import MySQLdb.cursors
-from application.forms import RegisterForm
+from application.forms import RegisterForm, LoginForm
 
 # DEFINE SQL STATEMENTS
 CREATE_USER = """
@@ -50,5 +50,6 @@ def register_page():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
