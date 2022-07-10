@@ -45,7 +45,7 @@ def register_page():
 
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(f'There was an error: {err_msg}')
+            flash(f'{err_msg[0]}')
 
     return render_template('register.html', form=form)
 
