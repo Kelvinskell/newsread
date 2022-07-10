@@ -9,7 +9,7 @@ from application.forms import RegisterForm
 CREATE_USER = """
 INSERT INTO user
 (username, email_address, password)
-VALUES (%s, %s, %s)
+VALUES (%s, %s, SHA1(%s))
 """
 
 
