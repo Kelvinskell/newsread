@@ -60,9 +60,11 @@ def login_page():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(f"SELECT * FROM user WHERE username = '{username}' AND password = SHA1('{password}')")
         account = cursor.fetchone()
+
         if account:
-            return '<p>Good</p>'
-
-
+             flash(f'Success! You are logged in as {username}', category='success')
+            return '<h1>News Page</h1>'
+        else:
+            flash('Username or Password incorrect. Please try again.', category='danger')
     return render_template('login.html', form=form)
 
