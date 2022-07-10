@@ -18,10 +18,6 @@ def register_page():
     form = RegisterForm()
     
     # Flash Error messages
-    if form.errors != {}:
-        for err_msg in form.errors.values():
-            flash(f'There was an error: {err_msg}')
-
     if form.validate_on_submit():
         username = form.username.data
         email_address = form.email_address.data
@@ -46,6 +42,11 @@ def register_page():
         # Close cursor
         cursor.close()
         return '<h1>You have successfully registered</h1>'
+
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(f'There was an error: {err_msg}')
+
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
