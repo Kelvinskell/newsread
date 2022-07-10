@@ -1,6 +1,7 @@
 from application import app
 from flask import render_template, redirect, url_for
 from application import mysql
+import MySQLdb
 import MySQLdb.cursors
 from application.forms import RegisterForm
 
@@ -21,13 +22,25 @@ def register_page():
         email_address = form.email_address.data
         password1 = form.password1.data
         cursor = mysql.connection.cursor()
-        cursor.execute(CREATE_USER, (username, email_address, password1))
 
-        # save to database
+        # MYSQL Operational Errors
+        try:
+            cursor.execute(CREATE_USER, (username, email_address, password1))
+        except MySQLdb.OperationalError:
+            return '''
+                   <hr />
+                   <h1><strong>Connection Time out</strong></h1>
+                   <hr />
+                   <br>
+                   <h2>Return To Previous Page</h2>
+                   '''
+
+        # Save to database
         mysql.connection.commit()
 
-        # close cursor
+        # Close cursor
         cursor.close()
+
         return '<h1>You have successfully registered</h1>'
 
     return render_template('register.html', form=form)
