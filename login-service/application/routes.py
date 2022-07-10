@@ -52,5 +52,17 @@ def register_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        
+        # Execute SQL Query to validate details
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(f"SELECT * FROM user WHERE username = '{username}' AND password = SHA1('{password}')")
+        account = cursor.fetchone()
+        if account:
+            return '<p>Good</p>'
+
+
     return render_template('login.html', form=form)
 
