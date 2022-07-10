@@ -1,5 +1,5 @@
 from application import app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from application import mysql
 import MySQLdb
 import MySQLdb.cursors
@@ -17,6 +17,12 @@ VALUES (%s, %s, SHA1(%s))
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     form = RegisterForm()
+    
+    # Flash Error messages
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(f'There was an error: {err_msg}')
+
     if form.validate_on_submit():
         username = form.username.data
         email_address = form.email_address.data
@@ -40,7 +46,5 @@ def register_page():
 
         # Close cursor
         cursor.close()
-
         return '<h1>You have successfully registered</h1>'
-
     return render_template('register.html', form=form)
