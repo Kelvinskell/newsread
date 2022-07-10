@@ -63,7 +63,7 @@ def login_page():
 
         if account:
              flash(f'Success! You are logged in as {username}', category='success')
-            return '<h1>News Page</h1>'
+             return '<h1>News Page</h1>'
         else:
             flash('Username or Password incorrect. Please try again.', category='danger')
     return render_template('login.html', form=form)
