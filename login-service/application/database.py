@@ -1,6 +1,6 @@
 from mysql.connector import connect, Error
 
-# DEFINE SQL QUERIES
+# DEFINE SQL STATEMENTS
 DB = 'newsread'
 USER = 'root'
 HOST = 'localhost'
@@ -11,8 +11,8 @@ CREATE_USER_TABLE = """
 CREATE TABLE user(
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(20) UNIQUE NOT NULL,
-email_address VARCHAR(35) UNIQUE NOT NULL
-password VARCHAR(10000) NOT NULL, 
+email_address VARCHAR(35) UNIQUE NOT NULL,
+password VARCHAR(10000) NOT NULL 
 )"""
 
 
