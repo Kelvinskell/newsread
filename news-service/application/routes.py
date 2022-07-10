@@ -1,9 +1,27 @@
 from application import app
 from flask import render_template
 
+# Import modules for API Access
+import http.client, urllib.parse
+
 @app.route("/")
 @app.route("/news")
 def news_page():
+
+    # Connect to Mediastack API
+    conn = http.client.HTTPConnection('api.mediastack.com')
+    params = urllib.parse.urlencode({
+        'access_key': 'ACCESS_KEY',
+        'categories': '-general',
+        'countries': 'us, gb, ng, ca',
+        'languages': 'en',
+        'limit': 20,
+        })
+    conn.request('GET', '/v1/news?{}'.format(params))
+    res = conn.getresponse()
+    data = res.read()
+    return data
+
     return render_template('news_page.html')
 
 @app.route("/")
