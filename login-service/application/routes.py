@@ -63,6 +63,7 @@ def login_page():
 
         if account:
              flash(f'Success! You are logged in as {username}', category='success')
+             session = {'loggedin': True, 'id': account['id'], 'username': account['username']}
              return '<h1>News Page</h1>'
         else:
             flash('Username or Password incorrect. Please try again.', category='danger')
