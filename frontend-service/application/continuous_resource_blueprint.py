@@ -3,8 +3,10 @@
 
 from flask import Blueprint, jsonify
 
-blueprint = Blueprint('ContinuousResourceBlueprint', __name_-)
+blueprint = Blueprint('ContinuousResourceBlueprint', __name__)
 
 @blueprint.route('/<resource_type>', methods=['POST'])
 def create_continuous_resource(resource_type):
     return jsonify({}), 201
+
+
