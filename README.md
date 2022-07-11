@@ -26,7 +26,7 @@ Microservices underlie much of Modern Devops and Software engineering.
 For more information about Microservices, this [article](https://aws.amazon.com/microservices/) provides an excellent overview. 
 
 ## Addendum 
-This application is divided into three microservices:
+This application is made up of three microservices:
  - Frontend service
  - Login service
  - News service 
@@ -39,7 +39,7 @@ This service runs on port 5000
 ### Login Service 
 The login service utilises the flask login manager as well as intricate python code, to register and authenticate users. 
 
-The MYSQL relational database management system is utilised extensively in the Creaton and management of users. 
+The MYSQL relational database management system is utilised extensively in the creaton and management of users. 
 MYSQL is used here to:
  - Create a database. 
  - Create a user accounts table. 
