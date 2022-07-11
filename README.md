@@ -29,7 +29,7 @@ This application is divided into three microservices:
  - News service 
 
 ### Frontend Service 
-The Frontend microservice of this application is responsible for displaying the home page. 
+The Frontend microservice of this application is responsible for displaying the home page and directing users to the Login Service. 
 
 This service runs on port 5000
 
@@ -37,5 +37,12 @@ This service runs on port 5000
 The login service utilises the flask login manager as well as intricate python code, to register and authenticate users. 
 
 The MYSQL relational database management system is utilised extensively in the Creaton and management of users. 
+MYSQ is used here to:
+ - Create a database. 
+ - Create a user accounts table. 
+ - Create new user accounts. 
+ - Store user credentials. 
+ - Authenticate users. 
+This service runs on port 5001
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
 
