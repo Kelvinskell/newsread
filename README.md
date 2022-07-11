@@ -1,4 +1,4 @@
-# Brief Project Description 
+# Brief Project Synopsis 
 **NewsRead** is a python flask web application built using a microservices architecture and deployed in the cloud.
 
 This Web Application allows you to get the latest news from different parts of the world - culled from different news sources - right on one Web Page. 
@@ -25,7 +25,7 @@ Microservices underlie much of Modern Devops and Software engineering.
 
 For more information about Microservices, this [article](https://aws.amazon.com/microservices/) provides an excellent overview. 
 
-## Addendum 
+## Project Description 
 This application is made up of three microservices:
  - Frontend service
  - Login service
