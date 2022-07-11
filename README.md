@@ -46,9 +46,20 @@ MYSQL is used here to:
  - Create new user accounts. 
  - Store user credentials. 
  - Authenticate users.
+Authenticated users are then redirected to the News Service. 
  
 This service runs on port 5001
 
 ### News Service 
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
+This service extensively utilises jinja2 templating engine to nicely display python objects.
+Python objects in this context are formatted data from the JSON object returned by the API. 
+
+This service also provides a customization page for users to choose what news to appear in their feed. 
+
+This service runs on port 5002. 
+
+# Usage 
+
+
 
