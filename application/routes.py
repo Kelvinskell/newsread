@@ -80,7 +80,8 @@ def news_page():
                 'title': news['title'],
                 'description': news['description'],
                 'url': news['url'],
-                'image': random.choice(images)
+                'image': news['image'],
+                'backup_image': random.choice(images)
                 }
         items.append(item)
 
