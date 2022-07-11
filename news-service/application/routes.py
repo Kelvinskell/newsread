@@ -21,7 +21,7 @@ def news_page():
     params = urllib.parse.urlencode({
         'access_key': API_KEY,
         'categories': 'general,science,sports,health,technology,entertainment',
-        'countries': 'us,ng,gb,ca,au,de,fr,pl',
+        'countries': 'ng,us,gb',
         'languages': 'en',
         'limit': 100
         })
