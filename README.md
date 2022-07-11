@@ -23,6 +23,8 @@ Microservices are highly reliable in that malfunction of one part of the applica
 Due to their loose architecture, each microservice can be scaled up or down - as needed - without affecting the entire service.
 Microservices underlie much of Modern Devops and Software engineering. 
 
+To learn more about Microservices, this article on [AWS](https://aws.amazon.com/microservices/) provides an excellent overview. 
+
 This application is divided into three microservices:
  - Frontend service
  - Login service
@@ -37,7 +39,7 @@ This service runs on port 5000
 The login service utilises the flask login manager as well as intricate python code, to register and authenticate users. 
 
 The MYSQL relational database management system is utilised extensively in the Creaton and management of users. 
-MYSQ is used here to:
+MYSQL is used here to:
  - Create a database. 
  - Create a user accounts table. 
  - Create new user accounts. 
