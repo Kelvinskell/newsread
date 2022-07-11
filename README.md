@@ -60,6 +60,7 @@ This service also provides a customization page for users to choose what news to
 This service runs on port 5002. 
 
 # Usage 
+**This project is still in the pipelines and not yet ready for production.**
 
 # Contributions 
 This is an open source, active project with an MIT License. 
