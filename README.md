@@ -42,7 +42,10 @@ MYSQ is used here to:
  - Create a user accounts table. 
  - Create new user accounts. 
  - Store user credentials. 
- - Authenticate users. 
+ - Authenticate users.
+ 
 This service runs on port 5001
+
+### News Service 
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
 
