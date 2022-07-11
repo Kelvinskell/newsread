@@ -1,5 +1,6 @@
 from application import app
 from flask import render_template
+import socket
 import json
 import random
 
@@ -25,7 +26,10 @@ def news_page():
         'languages': 'en',
         'limit': 100
         })
-    conn.request('GET', '/v1/news?{}'.format(params))
+    try:
+        conn.request('GET', '/v1/news?{}'.format(params))
+    except socket.gaierror:
+        return '<h1>Connection Timeout</h1>'
     res = conn.getresponse()
     json_object = res.read()
 
