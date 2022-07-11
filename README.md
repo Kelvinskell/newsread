@@ -33,5 +33,9 @@ The Frontend microservice of this application is responsible for displaying the 
 
 This service runs on port 5000
 
+### Login Service 
+The login service utilises the flask login manager as well as intricate python code, to register and authenticate users. 
+
+The MYSQL relational database management system is utilised extensively in the Creaton and management of users. 
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
 
