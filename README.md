@@ -5,7 +5,7 @@ This Web Application allows you to get the latest news from different parts of t
 
 So basically, it is a news content aggregator. 
 
-NewsRead is highly customizable and offers the user a variety of options to chose from in selecting how thier news feed will be displayed. 
+**NewsRead** is highly customizable and offers the user a variety of options to chose from in selecting how thier news feed will be displayed. 
 This includes country, language and category selections. 
 
 A secondary objective of this project is to demonstrate usage of Microservices in software design.
