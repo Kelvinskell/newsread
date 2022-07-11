@@ -4,10 +4,10 @@
 This Web Application allows you to get the latest news from different parts of the world - culled from different news sources - right on one Web Page. 
 
 So basically, it is a news content aggregator. 
+
 NewsRead is highly customizable and offers the user a variety of options to chose from in selecting how thier news feed will be displayed. 
 This includes country, language and category selections. 
 
-NewsRead uses API from [Mediastack](https://www.mediastack.com)
 A secondary objective of this project is to demonstrate usage of Microservices in software design.
 
 # What Are Microservices? 
@@ -27,3 +27,5 @@ This application is divided into three microservices:
  - Frontend service
  - Login service
  - News service 
+NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
+
