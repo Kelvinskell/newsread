@@ -4,6 +4,12 @@ from flask import render_template
 # Import modules for API Access
 import http.client, urllib.parse
 
+# Load API Key
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv('SECRET_KEY')
+
 @app.route("/")
 @app.route("/news")
 def news_page():
