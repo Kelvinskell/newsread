@@ -61,5 +61,14 @@ This service runs on port 5002.
 
 # Usage 
 
+# Contributions 
+This is an open source, active project with an MIT License. 
+Contributions are highly welcome and will be appreciated. 
+Just submit a pull request and I will respond. 
+Also, if you find any bugs or other issues, please do well to submit a pull request. 
+
+I am always open to connections on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1) 
+
+
 
 
