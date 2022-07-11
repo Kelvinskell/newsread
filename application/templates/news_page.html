@@ -12,7 +12,11 @@ NewsRead - Breaking News
 		  <a class="blog-post-title" href="{{ item.url  }}" target=_blank><header><h1><strong>{{ item.title }}</strong></h1></header></a>
     </div>
 
+    {% if item.image != None %}
     <img src="{{ item.image }}" />
+    {% else %}
+    <img src="{{ item.backup_image }}" />
+    {% endif %}
 
     <br >
     <p>{{ item.description  }}</p>
