@@ -27,5 +27,11 @@ This application is divided into three microservices:
  - Frontend service
  - Login service
  - News service 
+
+### Frontend Service 
+The Frontend microservice of this application is responsible for displaying the home page. 
+
+This service runs on port 5000
+
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
 
