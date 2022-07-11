@@ -140,7 +140,6 @@ def register_page():
 
         # Close cursor
         cursor.close()
-        session = {'loggedin': True, 'id': account['id'], 'username': account['username']}
         return news_page()
 
     if form.errors != {}:
