@@ -86,6 +86,7 @@ def news_page():
 
     return render_template('news_page.html', items=items)
 
+
 @app.route("/")
 @app.route("/customize")
 def customization_page():
@@ -109,8 +110,6 @@ def customization_page():
             ]
 
     return render_template('customize_page.html', items=items)
-
-
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -150,6 +149,7 @@ def register_page():
 
     return render_template('register.html', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
@@ -169,6 +169,7 @@ def login_page():
         else:
             flash('Username or Password incorrect. Please try again.', category='danger')
     return render_template('login.html', form=form)
+
 
 @app.route('/logout')
 def logout():
