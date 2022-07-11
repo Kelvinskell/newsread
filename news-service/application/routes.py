@@ -1,5 +1,7 @@
 from application import app
 from flask import render_template
+import json
+import random
 
 # Import modules for API Access
 import http.client, urllib.parse
@@ -17,18 +19,41 @@ def news_page():
     # Connect to Mediastack API
     conn = http.client.HTTPConnection('api.mediastack.com')
     params = urllib.parse.urlencode({
-        'access_key': 'ACCESS_KEY',
-        'categories': '-general',
-        'countries': 'us, gb, ng, ca',
+        'access_key': API_KEY,
+        'categories': 'general,science,sports,health,technology,entertainment,business',
+        'countries': 'us,gb,ng,ca,au',
         'languages': 'en',
-        'limit': 20,
+        'limit': 50,
         })
     conn.request('GET', '/v1/news?{}'.format(params))
     res = conn.getresponse()
-    data = res.read()
-    return data
+    json_object = res.read()
 
-    return render_template('news_page.html')
+    # Convert json response from api to python object
+    python_object = json.loads(json_object)
+    data = python_object['data']
+
+    # Use backup Image is API does not return an image
+    backup_images = [
+            "https://motionarray.imgix.net/preview-328095-gNWCObG9we-high_0004.jpg?w=660&q=60&fit=max&auto=format",
+            "https://i.ytimg.com/vi/hBOUjUEY46w/hqdefault.jpg ",
+            "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/breaking-news-poster-design-template-232c3f2700b91a0fd6e3a5a2e583a5da_screen.jpg?ts=1610645412",
+            "https://media.istockphoto.com/vectors/breaking-news-live-banner-on-dotted-map-of-the-world-background-vector-id1150517899?k=20&m=1150517899&s=612x612&w=0&h=jMz9KZVY_abyiXfjdYfDMw0pUD2iTdNRnFBcHJgsxoI="
+            ]
+
+    items = []
+
+    for news in data:
+        item = {
+                'title': news['title'],
+                'image': news['image'],
+                'description': news['description'],
+                'url': news['url'],
+                'backup_image': random.choice(backup_images)
+                }
+        items.append(item)
+
+    return render_template('news_page.html', items=items)
 
 @app.route("/")
 @app.route("/customize")
