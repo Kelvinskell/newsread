@@ -11,7 +11,7 @@ This includes country, language and category selections.
 A secondary objective of this project is to demonstrate usage of Microservices in software design.
 
 # What Are Microservices? 
-Microservices, as explained by [Redhat](https://www.redhat.com/en/topics/microservices/what-are-microservices) are an an architectural approach to building applications. 
+Microservices, as explained by [Redhat](https://www.redhat.com/en/topics/microservices/what-are-microservices), are an an architectural approach to building applications. 
 
 As an architectural framework, microservices are distributed and loosely coupled, such that a change in one microservice does not break the entire app. 
 
@@ -25,7 +25,7 @@ Microservices underlie much of Modern Devops and Software engineering.
 
 For more information about Microservices, this [article](https://aws.amazon.com/microservices/) provides an excellent overview. 
 
-## Project Description 
+# Project Description 
 This application is made up of three microservices:
  - Frontend service
  - Login service
