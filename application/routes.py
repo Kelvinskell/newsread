@@ -35,6 +35,9 @@ def home_page():
 
 @app.route("/news")
 def news_page():
+    # Validate user
+    if session['loggedin'] != True:
+        return render_template('home.html')
 
     # Connect to Mediastack API
     conn = http.client.HTTPConnection('api.mediastack.com')
@@ -91,6 +94,10 @@ def news_page():
 @app.route("/")
 @app.route("/customize")
 def customization_page():
+    # Validate session information
+    if session['loggedin'] != True:
+        return render_template('home.html')
+
     # Parameters to be accepted from user and fed to the API
     countries = ['Australia', 'Canada', 'China', 'France', 'Germany', 'India', 'Italy', 'Nigeria', 'Poland', 'Singapore', 'United States', 'United Kingdom']
     languages = ['Chinese', 'Dutch', 'English', 'French', 'German', 'Hebrew', 'Italian', 'Norweighian', 'Portuguese', 'Russian', 'Spanish', 'Swedish']
@@ -117,7 +124,6 @@ def customization_page():
 def register_page():
     form = RegisterForm()
 
-    # Flash Error messages
     if form.validate_on_submit():
         username = form.username.data
         email_address = form.email_address.data
@@ -141,8 +147,14 @@ def register_page():
 
         # Close cursor
         cursor.close()
+
+        # Create session information
+        session['username'] = username
+        session['loggedin'] = True
+
         return news_page()
 
+    # Flash Error messages
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f'{err_msg[0]}')
