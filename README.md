@@ -1,5 +1,5 @@
 # Brief Project Synopsis 
-**NewsRead** is a python flask web application built using a microservices architecture and deployed in the cloud.
+**NewsRead** is a python flask web application deployed in the cloud.
 
 This Web Application allows you to get the latest news from different parts of the world - culled from different news sources - right on one Web Page. 
 
@@ -8,33 +8,16 @@ So basically, it is a news content aggregator.
 **NewsRead** is highly customizable and offers the user a variety of options to chose from in selecting how thier news feed will be displayed. 
 This includes country, language and category selections. 
 
-A secondary objective of this project is to demonstrate usage of Microservices in software design.
-
-# What Are Microservices? 
-Microservices, as explained by [Redhat](https://www.redhat.com/en/topics/microservices/what-are-microservices), are an an architectural approach to building applications. 
-
-As an architectural framework, microservices are distributed and loosely coupled, such that a change in one microservice does not break the entire app. 
-
-Two major benefits of this loosely coupled design are:
- - Reliability
- - Scalability 
-
-Microservices are highly reliable in that malfunction of one part of the application does not necessarily affect the entire service. 
-Due to their loose architecture, each microservice can be scaled up or down - as needed - without affecting the entire service.
-Microservices underlie much of Modern Devops and Software engineering. 
-
-For more information about Microservices, this [article](https://aws.amazon.com/microservices/) provides an excellent overview. 
 
 # Project Description 
-This application is made up of three microservices:
+This application is made up of three units:
  - Frontend service
  - Login service
  - News service 
 
 ### Frontend Service 
-The Frontend microservice of this application is responsible for displaying the home page and directing users to the Login Service. 
+The Frontend service of this application is responsible for displaying the home page and directing users to the Login Service. 
 
-This service runs on port 5000
 
 ### Login Service 
 The login service utilises the flask login manager as well as intricate python code, to register and authenticate users. 
@@ -48,7 +31,6 @@ MYSQL is used here to:
  - Authenticate users.
 Authenticated users are then redirected to the News Service. 
  
-This service runs on port 5001
 
 ### News Service 
 NewsRead uses API from [Mediastack](https://www.mediastack.com) to fetch news content. 
@@ -57,7 +39,6 @@ Python objects in this context are formatted data from the JSON object returned 
 
 This service also provides a customization page for users to choose what news to appear in their feed. 
 
-This service runs on port 5002. 
 
 # Usage 
 **This project is still in the pipelines and not yet ready for production.**
@@ -66,7 +47,9 @@ This service runs on port 5002.
 This is an open source, active project with an MIT License. 
 Contributions are highly welcome and will be appreciated. 
 Just submit a pull request and I will respond. 
-Also, if you find any bugs or other issues, please do well to submit a pull request. 
+Also, if you find any bugs or other issues, please do well to submit a pull request.
+
+**N.B: I hope to convert migrate this web application from a monolithic architecture into a fully fledged microservice architecture sometime in the near future.** 
 
 I am always open to connections on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1) 
 
