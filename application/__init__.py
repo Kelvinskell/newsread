@@ -3,7 +3,6 @@ from flask import render_template
 import pymysql
 pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
-from application import database
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '08dae760c2488d8a0dca1bfb'
