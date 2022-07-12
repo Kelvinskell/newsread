@@ -1,5 +1,5 @@
 # Brief Project Synopsis 
-**NewsRead** is a python flask web application deployed in the cloud.
+**[NewsRead](https://flask-newsread.herokuapp.com/)** is a python flask web application deployed in the cloud.
 
 This Web Application allows you to get the latest news from different parts of the world - culled from different news sources - right on one Web Page. 
 
@@ -41,7 +41,12 @@ This service also provides a customization page for users to choose what news to
 
 
 # Usage 
-**This project is still in the pipelines and not yet ready for production.**
+You can access this application by simply clicking on this link: https://flask-newsread.herokuapp.com/
+
+You can as well run this application locally on your server by applying the following steps:
+ - Clone this repository.
+ - Make sure you install all the modules listed in the requirements.txt file.
+ - Execute `python3 run.py`
 
 # Contributions 
 This is an open source, active project with an MIT License. 
