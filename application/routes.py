@@ -15,7 +15,7 @@ import http.client, urllib.parse
 import os
 from dotenv import load_dotenv
 load_dotenv()
-API_KEY = os.getenv('SECRET_KEY')
+API_KEY = os.getenv('API_KEY')
 
 # Create dictionary to store session information
 session = {}
