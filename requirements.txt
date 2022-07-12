@@ -42,8 +42,6 @@ SecretStorage==3.3.1
 SQLAlchemy==1.4.39
 ssh-import-id==5.11
 systemd-python==234
-ubuntu-advantage-tools==27.9
-ubuntu-drivers-common==0.0.0
 urllib3==1.26.5
 w3lib==1.22.0
 WTForms==3.0.1
