@@ -18,7 +18,7 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
 # Create dictionary to store session information
-session = {}
+session = {'loggedin': False}
 
 # DEFINE SQL STATEMENTS
 CREATE_USER = """
@@ -36,7 +36,7 @@ def home_page():
 @app.route("/news")
 def news_page():
     # Validate user
-    if session['loggedin'] != True:
+    if not session['loggedin']:
         return render_template('home.html')
 
     # Connect to Mediastack API
@@ -95,7 +95,7 @@ def news_page():
 @app.route("/customize")
 def customization_page():
     # Validate session information
-    if session['loggedin'] != True:
+    if not session['loggedin']:
         return render_template('home.html')
 
     # Parameters to be accepted from user and fed to the API
@@ -176,7 +176,8 @@ def login_page():
 
         if account:
              flash(f'Success! You are logged in as {username}', category='success')
-             session = {'loggedin': True, 'id': account['id'], 'username': account['username']}
+             session['loggedin'] = True
+             session['username'] = username
              return news_page()
         else:
             flash('Username or Password incorrect. Please try again.', category='danger')
@@ -185,7 +186,7 @@ def login_page():
 
 @app.route('/logout')
 def logout():
-   session.pop('loggedin', None)
+   session['loggedin'] = False
    session.pop('id', None)
    session.pop('username', None)
    return render_template('home.html')
