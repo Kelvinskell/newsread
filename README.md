@@ -49,7 +49,7 @@ Contributions are highly welcome and will be appreciated.
 Just submit a pull request and I will respond. 
 Also, if you find any bugs or other issues, please do well to submit a pull request.
 
-**N.B: I hope to convert migrate this web application from a monolithic architecture into a fully fledged microservice architecture sometime in the near future.** 
+**N.B: I hope to migrate this web application from a monolithic architecture into a fully fledged microservice architecture sometime in the near future.** 
 
 I am always open to connections on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1) 
 
