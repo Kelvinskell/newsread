@@ -47,7 +47,17 @@ You can access this application by simply clicking on this link: https://flask-n
 
 You can as well run this application locally as a container on your server by applying the following steps:
  - Clone this repository.
- - Navigate to the project folder. 
+ - Navigate to the project directory. 
+ - Create a .env file in the directory and populate it with the value for the following parameter:
+   - MYSQL_ROOT_PASSOWRD 
+ - Also Create a .env file in the _application_ directory. 
+ - Populate your _application/.env_ files with the values to these parameters:
+   - DATABASE_PASSWORD
+   - MYSQL_USER
+   - MYSQL_HOST 
+
+These values will be needed in order to correctly execute the _docker-compose_ command. 
+   
  - Execute **`docker-compose up`**
 
 # Contributions 
