@@ -8,6 +8,8 @@ So basically, it is a news content aggregator.
 **NewsRead** is highly customizable and offers the user a variety of options to chose from in selecting how thier news feed will be displayed. 
 This includes country, language and category selections. 
 
+This application has been 'Dockerized' and you can find the image on DockerHub: **kelvinskell/newsread**.
+
 
 # Project Description 
 This application is made up of three units:
@@ -43,10 +45,10 @@ This service also provides a customization page for users to choose what news to
 # Usage 
 You can access this application by simply clicking on this link: https://flask-newsread.herokuapp.com/
 
-You can as well run this application locally on your server by applying the following steps:
+You can as well run this application locally as a container on your server by applying the following steps:
  - Clone this repository.
- - Make sure you install all the modules listed in the requirements.txt file.
- - Execute `python3 run.py`
+ - Navigate to the project folder. 
+ - Execute **`docker-compose up`**
 
 # Contributions 
 This is an open source, active project with an MIT License. 
