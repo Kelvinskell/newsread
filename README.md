@@ -55,6 +55,7 @@ You can as well run this application locally as a container on your server by ap
    - DATABASE_PASSWORD
    - MYSQL_USER
    - MYSQL_HOST 
+   - MYSQL_DB (The value for thsi should be 'newsread')
 
 These values will be needed in order to correctly execute the _docker-compose_ command. 
    
