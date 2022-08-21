@@ -3,3 +3,5 @@ screenshots
 LICENSE
 __pycache__
 README.md
+Dockerfile
+docker-compose.yml
