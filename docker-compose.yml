@@ -16,6 +16,8 @@ services:
     container_name: news
     environment:
       FLASK_APP: run.py
+    env_file:
+      - application/.env
     depends_on:
       - mysqldb
 
