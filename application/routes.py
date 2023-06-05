@@ -197,4 +197,3 @@ def logout():
     global loggedin
     loggedin = False
     return render_template('home.html')
-
