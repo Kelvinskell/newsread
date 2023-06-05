@@ -36,8 +36,12 @@ This application is specially designed to be deployed on **AWS Elastic Container
 There is a terraform directory attached which contains terraform code to automatically provision an ECS Cluster for you.
 All you have to do then is execute the terraform code to have the application deployed on Your AWS ECS Cloud Infrastructure.
 - Clone this repository.
+- Create secrets in AWS secrets Manager via AWS CLI
+  `- aws secretsmanager create-secret --name newsread --secret-string "{\"API_KEY\":\"f39307bb61fb31ea2c458479762b9acc\", \
+  \"SECRET_KEY\":\"08dae760c2488d8a0dca1bfb\,\"MYSQL_DB\":\"newsread\", \"MYSQL_HOST\":\"localhost\", \"MYSQL_USER\":\"root\",  \ \"DATABASE_PASSWORD\":\"NewsReadSecret\", \"MYSQL_ROOT_PASSWORD\":\"NewsReadSecret\"}" --kms-key-id alias/aws/secretsmanager --region us-east-1`
 - Navigate to the project directory.
 - Switch in the _terraform_ directory.
+- Execute `terraform init`
 - Execute `terraform plan`.
 - If you are happy with the proposed changes, execute `terraform apply -auto-approve`
 
