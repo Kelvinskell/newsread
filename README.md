@@ -37,7 +37,7 @@ There is a terraform directory attached which contains terraform code to automat
 All you have to do then is execute the terraform code to have the application deployed on Your AWS ECS Cloud Infrastructure.
 - Clone this repository.
 - Create secrets in AWS secrets Manager via AWS CLI
-  `- aws secretsmanager create-secret --name newsread6 --secret-string "{\"API_KEY\":\"f39307bb61fb31ea2c45847976
+  `- aws secretsmanager create-secret --name newsread8 --secret-string "{\"API_KEY\":\"f39307bb61fb31ea2c45847976
 2b9acc\", \
   \"SECRET_KEY\":\"08dae760c2488d8a0dca1bfb\",\"MYSQL_DB\":\"newsread\", \"MYSQL_HOST\":\"localhost\", \"MYSQL_USER\":\"root\", \"DATABASE_PASSWORD\":\"NewsReadSecret\", \"MYSQL_ROOT_PASS
 WORD\":\"NewsReadSecret\"}" --kms-key-id alias/aws/secretsmanager --region us-east-1`
