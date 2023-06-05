@@ -13,19 +13,19 @@ resource "aws_ecs_cluster_capacity_providers" "cluster" {
     base                 = 1
     weight               = 100
     capacity_provider    = "FARGATE"
-    force_new_deployment = true
   }
 }
 
 resource "aws_ecs_service" "service" {
   name                              = "newsread-service"
   cluster                           = aws_ecs_cluster.cluster.id
-  task_definition                   = aws_ecs_task_definition.tasks.arn
+  task_definition                   = aws_ecs_task_definition.newsread-tasks.arn
   desired_count                     = 1
-  iam_role                          = aws_iam_role.foo.arn
-  depends_on                        = [aws_iam_role_policy.foo]
+  #iam_role                          = aws_iam_role.foo.arn
+  #$depends_on                        = [aws_iam_role_policy.foo]
   launch_type                       = "FARGATE"
   health_check_grace_period_seconds = 120
+  force_new_deployment = true
 
   load_balancer {
     target_group_arn = aws_lb_target_group.tg.arn
@@ -42,16 +42,17 @@ resource "aws_ecs_service" "service" {
 
 
 # Create task definition
-resource "aws_ecs_task_definition" "service" {
+resource "aws_ecs_task_definition" "newsread-tasks" {
   family       = "service"
   network_mode = "awsvpc"
   skip_destroy = true
+  requires_compatibilities = ["FARGATE"]
+  cpu = 1024
+  memory =2048
   container_definitions = jsonencode([
     {
       name      = "news"
       image     = "kelvinskell/newsread"
-      cpu       = 2
-      memory    = 512
       essential = true
       portMappings = [
         {
@@ -63,8 +64,6 @@ resource "aws_ecs_task_definition" "service" {
     {
       name      = "mysqldb"
       image     = "mysql:5.7"
-      cpu       = 2
-      memory    = 256
       essential = true
       portMappings = [
         {
