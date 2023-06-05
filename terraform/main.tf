@@ -19,7 +19,7 @@ resource "aws_ecs_cluster_capacity_providers" "cluster" {
 resource "aws_ecs_service" "service" {
   name                              = "newsread-service"
   cluster                           = aws_ecs_cluster.cluster.id
-  task_definition                   = aws_ecs_task_definition.newsread-tasks.arn
+  task_definition                   = aws_ecs_task_definition.tasks.arn
   desired_count                     = 1
   #iam_role                          = aws_iam_role.foo.arn
   #$depends_on                        = [aws_iam_role_policy.foo]
@@ -42,8 +42,8 @@ resource "aws_ecs_service" "service" {
 
 
 # Create task definition
-resource "aws_ecs_task_definition" "newsread-tasks" {
-  family       = "service"
+resource "aws_ecs_task_definition" "tasks" {
+  family       = "newsread-tasks"
   network_mode = "awsvpc"
   skip_destroy = true
   requires_compatibilities = ["FARGATE"]
@@ -54,6 +54,36 @@ resource "aws_ecs_task_definition" "newsread-tasks" {
       name      = "news"
       image     = "kelvinskell/newsread"
       essential = true
+     environment: [
+      { 
+        name: "API_KEY"
+        value: local.container_variables.API_KEY
+      },
+      {
+        name: "SECRET_KEY"
+        value: local.container_variables.SECRET_KEY
+      },
+      {
+        name: "MYSQL_DB"
+        value: local.container_variables.MYSQL_DB
+      },
+      {
+        name: "MYSQL_HOST"
+        value: local.container_variables.MYSQL_HOST
+      },
+      {
+        name: "MYSQL_USER"
+        value: local.container_variables.MYSQL_USER
+      },
+      {
+        name: "DATABASE_PASSWORD"
+        value: local.container_variables.DATABASE_PASSWORD
+      },
+      {
+        name: "MYSQL_ROOT_PASSWORD"
+        value: "local.container_variables.MYSQL_ROOT_PASSWORD"
+      }
+      ]
       portMappings = [
         {
           containerPort = 5000
@@ -61,10 +91,17 @@ resource "aws_ecs_task_definition" "newsread-tasks" {
         }
       ]
     },
+
     {
       name      = "mysqldb"
       image     = "mysql:5.7"
       essential = true
+      environment: [
+        {
+          name: "MYSQL_ROOT_PASSWORD"
+          value: local.container_variables.MYSQL_ROOT_PASSWORD
+        }
+      ]
       portMappings = [
         {
           containerPort = 3306
