@@ -19,13 +19,16 @@ You can run this application locally as a container on your server by applying t
  - Also Create a .env file in the _application_ directory. 
  - Populate your _application/.env_ files with the values to these parameters:
    - DATABASE_PASSWORD
+   - MYSQL_ROOT_PASSWORD
    - MYSQL_USER
    - MYSQL_HOST 
    - MYSQL_DB (The value for thsi should be 'newsread')
+   - SECRET_KEY (The value for this should be '08dae760c2488d8a0dca1bfb')
+   - API_KEY (The value for this should be'f39307bb61fb31ea2c458479762b9acc' or alternatively, create your own [MediaStack](https://mediastack.com/) API)
 
 These values will be needed in order to correctly execute the _docker-compose_ command. 
    
- - Execute **`docker-compose up`**
+ - Execute **`docker compose up`**
 
 ## Terraform automation
 
