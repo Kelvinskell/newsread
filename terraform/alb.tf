@@ -1,10 +1,10 @@
 # create Application Load Balancer
 resource "aws_lb" "alb" {
-  name               = "newsread-alb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb-sg.id]
-  subnets            = flatten([module.vpc.public_subnets[*]])
+  name                       = "newsread-alb"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.alb-sg.id]
+  subnets                    = flatten([module.vpc.public_subnets[*]])
   enable_deletion_protection = false
 
   tags = {
@@ -17,16 +17,16 @@ resource "aws_lb_target_group" "tg" {
   name     = "newsread-alb-tg"
   port     = 5000
   protocol = "HTTP"
-  vpc_id  = module.vpc.vpc_id
+  vpc_id   = module.vpc.vpc_id
   health_check {
-    enabled = true
-    healthy_threshold = 2
-    interval = 60
-    matcher = "200-299"
-    path = "/"
-    port = 5000
-    protocol = "HTTP"
-    timeout = 10
+    enabled             = true
+    healthy_threshold   = 2
+    interval            = 60
+    matcher             = "200-299"
+    path                = "/"
+    port                = 5000
+    protocol            = "HTTP"
+    timeout             = 10
     unhealthy_threshold = 4
   }
 }
@@ -49,7 +49,7 @@ resource "aws_lb_listener" "http" {
     }
   }
   tags = {
-    Name = "newsread-alb-listener"
+    Name        = "newsread-alb-listener"
     Environment = "prod"
   }
 }

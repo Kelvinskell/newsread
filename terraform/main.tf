@@ -10,21 +10,21 @@ resource "aws_ecs_cluster_capacity_providers" "cluster" {
   capacity_providers = ["FARGATE"]
 
   default_capacity_provider_strategy {
-    base              = 1
-    weight            = 100
-    capacity_provider = "FARGATE"
+    base                 = 1
+    weight               = 100
+    capacity_provider    = "FARGATE"
     force_new_deployment = true
   }
 }
 
 resource "aws_ecs_service" "service" {
-  name            = "newsread-service"
-  cluster         = aws_ecs_cluster.cluster.id
-  task_definition = aws_ecs_task_definition.tasks.arn
-  desired_count   = 1
-  iam_role        = aws_iam_role.foo.arn
-  depends_on      = [aws_iam_role_policy.foo]
-  launch_type = "FARGATE"
+  name                              = "newsread-service"
+  cluster                           = aws_ecs_cluster.cluster.id
+  task_definition                   = aws_ecs_task_definition.tasks.arn
+  desired_count                     = 1
+  iam_role                          = aws_iam_role.foo.arn
+  depends_on                        = [aws_iam_role_policy.foo]
+  launch_type                       = "FARGATE"
   health_check_grace_period_seconds = 120
 
   load_balancer {
@@ -34,16 +34,16 @@ resource "aws_ecs_service" "service" {
   }
 
   network_configuration {
-    subnets = flatten([module.vpc.private_subnets[*]])  
-    security_groups = [aws_security_group.ecs-sg.id]
+    subnets          = flatten([module.vpc.private_subnets[*]])
+    security_groups  = [aws_security_group.ecs-sg.id]
     assign_public_ip = false
-}
+  }
 }
 
 
 # Create task definition
 resource "aws_ecs_task_definition" "service" {
-  family = "service"
+  family       = "service"
   network_mode = "awsvpc"
   skip_destroy = true
   container_definitions = jsonencode([
@@ -75,12 +75,12 @@ resource "aws_ecs_task_definition" "service" {
     }
   ])
 
-   volume {
+  volume {
     name = "service-storage"
 
     efs_volume_configuration {
-      file_system_id          = aws_efs_file_system.efs.id
-      root_directory          = "/var/lib/mysql"
+      file_system_id = aws_efs_file_system.efs.id
+      root_directory = "/var/lib/mysql"
     }
   }
 }
