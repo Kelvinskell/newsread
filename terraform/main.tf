@@ -10,7 +10,7 @@ resource "aws_ecs_cluster_capacity_providers" "cluster" {
   capacity_providers = ["FARGATE"]
 
   default_capacity_provider_strategy {
-    base                 = 1
+    base                 = 0
     weight               = 100
     capacity_provider    = "FARGATE"
   }
@@ -21,8 +21,6 @@ resource "aws_ecs_service" "service" {
   cluster                           = aws_ecs_cluster.cluster.id
   task_definition                   = aws_ecs_task_definition.tasks.arn
   desired_count                     = 1
-  #iam_role                          = aws_iam_role.foo.arn
-  #$depends_on                        = [aws_iam_role_policy.foo]
   launch_type                       = "FARGATE"
   health_check_grace_period_seconds = 120
   force_new_deployment = true
@@ -34,7 +32,7 @@ resource "aws_ecs_service" "service" {
   }
 
   network_configuration {
-    subnets          = flatten([module.vpc.private_subnets[*]])
+    subnets          = flatten([module.vpc.public_subnets[*]])
     security_groups  = [aws_security_group.ecs-sg.id]
     assign_public_ip = false
   }
@@ -53,7 +51,16 @@ resource "aws_ecs_task_definition" "tasks" {
     {
       name      = "news"
       image     = "kelvinskell/newsread"
+      cpu = 512
       essential = true
+      logConfiguration: {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/newsread/python",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+      }
      environment: [
       { 
         name: "API_KEY"
@@ -97,6 +104,21 @@ resource "aws_ecs_task_definition" "tasks" {
       name      = "mysqldb"
       image     = "mysql:5.7"
       essential = true
+      cpu = 512
+      mountPoints: [
+          {
+            "sourceVolume": "newsread-vol",
+            "containerPath": "/var/lib/mysql",
+            "readOnly": false
+          }
+        ]
+      logConfiguration: {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/newsread/mysql",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs"
+          }
       environment: [
         {
           name: "MYSQL_ROOT_PASSWORD"
@@ -111,14 +133,14 @@ resource "aws_ecs_task_definition" "tasks" {
         }
       ]
     }
+    }
   ])
 
   volume {
-    name = "service-storage"
+    name = "newsread-vol"
 
     efs_volume_configuration {
       file_system_id = aws_efs_file_system.efs.id
-      root_directory = "/var/lib/mysql"
     }
   }
 }
