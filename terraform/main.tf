@@ -10,9 +10,9 @@ resource "aws_ecs_cluster_capacity_providers" "cluster" {
   capacity_providers = ["FARGATE"]
 
   default_capacity_provider_strategy {
-    base                 = 0
-    weight               = 100
-    capacity_provider    = "FARGATE"
+    base              = 0
+    weight            = 100
+    capacity_provider = "FARGATE"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_ecs_service" "service" {
   desired_count                     = 1
   launch_type                       = "FARGATE"
   health_check_grace_period_seconds = 120
-  force_new_deployment = true
+  force_new_deployment              = true
 
   load_balancer {
     target_group_arn = aws_lb_target_group.tg.arn
@@ -41,55 +41,55 @@ resource "aws_ecs_service" "service" {
 
 # Create task definition
 resource "aws_ecs_task_definition" "tasks" {
-  family       = "newsread-tasks"
-  network_mode = "awsvpc"
-  skip_destroy = true
+  family                   = "newsread-tasks"
+  network_mode             = "awsvpc"
+  skip_destroy             = true
   requires_compatibilities = ["FARGATE"]
-  cpu = 1024
-  memory =2048
+  cpu                      = 1024
+  memory                   = 2048
   container_definitions = jsonencode([
     {
       name      = "news"
       image     = "kelvinskell/newsread"
-      cpu = 512
+      cpu       = 512
       essential = true
-      logConfiguration: {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "/ecs/newsread/python",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "ecs"
-          }
+      logConfiguration : {
+        "logDriver" : "awslogs",
+        "options" : {
+          "awslogs-group" : "/ecs/newsread/python",
+          "awslogs-region" : "us-east-1",
+          "awslogs-stream-prefix" : "ecs"
+        }
       }
-     environment: [
-      { 
-        name: "API_KEY"
-        value: local.container_variables.API_KEY
-      },
-      {
-        name: "SECRET_KEY"
-        value: local.container_variables.SECRET_KEY
-      },
-      {
-        name: "MYSQL_DB"
-        value: local.container_variables.MYSQL_DB
-      },
-      {
-        name: "MYSQL_HOST"
-        value: local.container_variables.MYSQL_HOST
-      },
-      {
-        name: "MYSQL_USER"
-        value: local.container_variables.MYSQL_USER
-      },
-      {
-        name: "DATABASE_PASSWORD"
-        value: local.container_variables.DATABASE_PASSWORD
-      },
-      {
-        name: "MYSQL_ROOT_PASSWORD"
-        value: "local.container_variables.MYSQL_ROOT_PASSWORD"
-      }
+      environment : [
+        {
+          name : "API_KEY"
+          value : local.container_variables.API_KEY
+        },
+        {
+          name : "SECRET_KEY"
+          value : local.container_variables.SECRET_KEY
+        },
+        {
+          name : "MYSQL_DB"
+          value : local.container_variables.MYSQL_DB
+        },
+        {
+          name : "MYSQL_HOST"
+          value : local.container_variables.MYSQL_HOST
+        },
+        {
+          name : "MYSQL_USER"
+          value : local.container_variables.MYSQL_USER
+        },
+        {
+          name : "DATABASE_PASSWORD"
+          value : local.container_variables.DATABASE_PASSWORD
+        },
+        {
+          name : "MYSQL_ROOT_PASSWORD"
+          value : "local.container_variables.MYSQL_ROOT_PASSWORD"
+        }
       ]
       portMappings = [
         {
@@ -104,35 +104,35 @@ resource "aws_ecs_task_definition" "tasks" {
       name      = "mysqldb"
       image     = "mysql:5.7"
       essential = true
-      cpu = 512
-      mountPoints: [
+      cpu       = 512
+      mountPoints : [
+        {
+          "sourceVolume" : "newsread-vol",
+          "containerPath" : "/var/lib/mysql",
+          "readOnly" : false
+        }
+      ]
+      logConfiguration : {
+        "logDriver" : "awslogs",
+        "options" : {
+          "awslogs-group" : "/ecs/newsread/mysql",
+          "awslogs-region" : "us-east-1",
+          "awslogs-stream-prefix" : "ecs"
+        }
+        environment : [
           {
-            "sourceVolume": "newsread-vol",
-            "containerPath": "/var/lib/mysql",
-            "readOnly": false
+            name : "MYSQL_ROOT_PASSWORD"
+            value : local.container_variables.MYSQL_ROOT_PASSWORD
           }
         ]
-      logConfiguration: {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "/ecs/newsread/mysql",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "ecs"
+        portMappings = [
+          {
+            containerPort = 3306
+            hostPort      = 3306
+            protocol      = "tcp"
           }
-      environment: [
-        {
-          name: "MYSQL_ROOT_PASSWORD"
-          value: local.container_variables.MYSQL_ROOT_PASSWORD
-        }
-      ]
-      portMappings = [
-        {
-          containerPort = 3306
-          hostPort      = 3306
-          protocol      = "tcp"
-        }
-      ]
-    }
+        ]
+      }
     }
   ])
 
