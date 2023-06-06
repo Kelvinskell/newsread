@@ -13,12 +13,12 @@ data "aws_iam_policy_document" "assume_role" {
 
  # Create task execution role
 resource "aws_iam_role" "server_role" {
-    name = "PROJECTXROLE"
+    name = "NewsReadRole"
     path = "/"
     assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
     inline_policy {
-        name = "project_x_inline_policy_ec2_read_access"
+        name = "newsread_inline_policy_ecs_task_execution"
         policy = jsonencode(
             {
         "Version": "2012-10-17",
@@ -35,6 +35,9 @@ resource "aws_iam_role" "server_role" {
             ],
             "Resource": "*"
         }
-    ])
+            
+    ]
 }
+        )
     }
+}
