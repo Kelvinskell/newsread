@@ -1,18 +1,18 @@
 # Define policy document
 data "aws_iam_policy_document" "assume_role" {
   statement {
-    effect = "Allow"
+        effect = "Allow"
 
-    principals {
-      type        = "Service"
-      identifiers = ["ec2.amazonaws.com"]
+        principals {
+            type = "Service"
+            identifiers = ["ecs-tasks.amazonaws.com"]
+        }
+        actions = ["sts:AssumeRole"]
     }
-    actions = ["sts:AssumeRole"]
-  }
 }
 
 # Create task execution role
-resource "aws_iam_role" "server_role" {
+resource "aws_iam_role" "ecs_role" {
   name               = "NewsReadRole"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
